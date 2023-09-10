@@ -3,11 +3,11 @@ import axios from 'axios';
 
 @Injectable()
 export class ProgramaService {
-  async fetchDataFromExternalApi(): Promise<any> {
+  async fetchDataFromExternalApi(data): Promise<any> {
     try {
       const id = 1337;
       const response = await axios.get(
-        `https://epg-api.video.globo.com/programmes/${id}?date=2023-09-09`,
+        `https://epg-api.video.globo.com/programmes/${id}?date=${data}`,
       );
       console.log('fez conexão');
       return response.data;
