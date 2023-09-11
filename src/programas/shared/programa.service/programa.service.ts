@@ -6,6 +6,42 @@ import { PrismaService } from 'src/database/PrismaService';
 export class ProgramaService {
   constructor(private readonly prisma: PrismaService) {}
 
+  async requisitarDadosDaAPIGlobo(data: string): Promise<any> {
+    try {
+      const dados = await this.prisma.programme.findUnique({
+        where: {
+          date: data,
+        },
+        include: {
+          entries: {
+            include: {
+              custom_info: {
+                include: {
+                  Graficos: {
+                    include: {
+                      Confronto: {
+                        include: {
+                          Oponente: true,
+                        },
+                      },
+                    },
+                  },
+                  Resumo: true,
+                },
+              },
+              program: true,
+            },
+          },
+        },
+      });
+      console.log(dados);
+      return dados;
+    } catch (error) {
+      console.error(error);
+      throw new Error('Erro ao buscar dados no banco de dados');
+    }
+  }
+
   async requisitarDadosESalvarNoBD(data: string): Promise<number> {
     try {
       const id = 1337;
