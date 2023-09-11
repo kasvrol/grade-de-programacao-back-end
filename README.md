@@ -4,7 +4,7 @@
 
 A API permite aos usuários acessar informações da programação da Rede Globo para um dia específico, obtendo os dados diretamente da API oficial da emissora por meio de requisições.
 
-Para rodar o projeto em seu ambiente local, abra o Postman e acesse http://localhost:3002 utilizando o método requerido para utilizar a aplicação e para rodar o projeto em produção https://nest-primeira-api-de-estudo-do-framework.vercel.app/programas{$ROTA}
+Para rodar o projeto em seu ambiente local, abra o Postman e acesse http://localhost:3002 utilizando o método requerido para utilizar a aplicação e para rodar o projeto em produção https://grade-de-programacao-back-end-git-main-kasvrol.vercel.app/programas{$ROTA}
 
 Os dados do BD em produção são escassos por causa do plano usado para construção da aplicação.
 
