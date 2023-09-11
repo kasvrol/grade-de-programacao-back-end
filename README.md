@@ -1,73 +1,58 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# API da Grade da Programação da Rede Globo.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Sobre
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+A API permite aos usuários acessar informações da programação da Rede Globo para um dia específico, obtendo os dados diretamente da API oficial da emissora por meio de requisições.
 
-## Description
+Para rodar o projeto em seu ambiente local, abra o Postman e acesse http://localhost:3002 utilizando o método requerido para utilizar a aplicação e para rodar o projeto em produção https://nest-primeira-api-de-estudo-do-framework.vercel.app/programas{$ROTA}
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Os dados do BD em produção são escassos por causa do plano usado para construção da aplicação.
 
-## Installation
+## Rotas
 
-```bash
-$ npm install
-```
+| **Método** | **Rota**                      | **Descrição\***                           |
+| ---------- | ----------------------------- | ----------------------------------------- |
+| GET        | /programas/{$AAAA-MM-DD}      | Mostra a programação do dia requisitado   |
+| POST       | /programas?data={$AAAA-MM-DD} | Armazena a programação do dia requisitado |
 
-## Running the app
+## Ferramentas utilizadas:
 
-```bash
-# development
-$ npm run start
+A aplicação foi construída utilizando as seguintes tecnologias e bibliotecas:
 
-# watch mode
-$ npm run start:dev
+- Nest.js v^10.0.0
+- Node.js v18.16.0
+- Prisma v^5.2.0
+- NPM v9.5.1
+- Axios v^1.5.0
+- Postman
+- [NeonDB](https://neon.tech/)
 
-# production mode
-$ npm run start:prod
-```
+## Como Executar a Aplicação em Sua Máquina:
 
-## Test
+Para executar a aplicação em sua máquina local, siga os passos abaixo:
+
+1 - Clone este repositório para sua máquina local usando o seguinte comando:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/kasvrol/grade-de-programacao-back-end.git
 ```
 
-## Support
+2 - Navegue até o diretório do projeto:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+cd grade-de-programacao-back-end.git
+```
 
-## Stay in touch
+3 - Instale as dependências do projeto usando o npm:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+npm install
+```
 
-## License
+4 - Agora você pode iniciar a aplicação em sua máquina usando o seguinte comando:
 
-Nest is [MIT licensed](LICENSE).
+```bash
+npm run dev
+# or
+yarn dev
+```
