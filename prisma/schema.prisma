@@ -18,15 +18,6 @@ model Resumo {
   customInfos CustomInfo?
 }
 
-model program {
-  id Int @id @default(autoincrement())
-  name String?
-  category String?
-  parental_guide String?
-  webmedia_program_id Int?
-  entry Entry?
-}
-
 model Oponente {
   id       Int  @id @default(autoincrement())
   Nome   String?
@@ -73,6 +64,15 @@ model CustomInfo {
   entry Entry?
 }
 
+model Program {
+  id Int @id @default(autoincrement())
+  name String
+  category String?
+  parental_guide String?
+  webmedia_program_id Int?
+  entry Entry?
+}
+
 model Entry {
   id Int @id @default(autoincrement())
   media_id String?
@@ -89,7 +89,7 @@ model Entry {
   custom_info CustomInfo @relation(fields: [customInfoId], references: [id])
   programme programme[]
   programId Int @unique
-  program program @relation( fields: [programId], references: [id])
+  program Program @relation( fields: [programId], references: [id])
 }
 
 model programme {

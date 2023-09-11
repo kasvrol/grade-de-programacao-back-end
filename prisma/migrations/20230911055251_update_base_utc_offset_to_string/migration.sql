@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "CustomInfo" ALTER COLUMN "BaseUTCOffset" SET DATA TYPE TEXT;
