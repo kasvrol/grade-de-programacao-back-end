@@ -9,3 +9,91 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Resumo {
+  id Int @id @default(autoincrement())
+  Sinopse String?
+  ResumoImprensa String?
+  Destaque String?
+  customInfos CustomInfo?
+}
+
+model program {
+  id Int @id @default(autoincrement())
+  name String?
+  category String?
+  parental_guide String?
+  webmedia_program_id Int?
+  entry Entry?
+}
+
+model Oponente {
+  id       Int  @id @default(autoincrement())
+  Nome   String?
+  URL String?
+  ImagemURL String?
+  confronto   Confronto @relation(fields: [confrontoId], references: [id])
+  confrontoId Int
+}
+
+model Confronto {
+  id Int @id @default(autoincrement())
+  Oponente Oponente[]
+  graficos Graficos?
+}
+
+model Graficos {
+  id Int @id @default(autoincrement())
+  URL String?
+  Trailler String?
+  ImagemURL String?
+  PosterURL String?
+  LogoURL String?
+  confrontoId Int @unique
+  Confronto Confronto @relation(fields: [confrontoId], references: [id])
+  customInfos CustomInfo?
+}
+
+model CustomInfo {
+  id Int @id @default(autoincrement())
+  Diretor String?
+  BaseUTCOffset String?
+  graficosId Int @unique
+  Graficos Graficos @relation(fields: [graficosId], references: [id])
+  resumoId Int @unique
+  Resumo Resumo @relation(fields: [resumoId], references: [id])
+  Elenco String?
+  Pais String?
+  Classe String?
+  TituloOriginal String?
+  Dublador String?
+  URLPrograma String?
+  Video String?
+  ClosedCaption String?
+  entry Entry?
+}
+
+model Entry {
+  id Int @id @default(autoincrement())
+  media_id String?
+  title String?
+  description String?
+  webmedia_title_id String?
+  start_time Int
+  end_time Int
+  human_start_time String?
+  human_end_time String?
+  duration_in_minutes Int
+  live_broadcast Boolean
+  customInfoId Int @unique
+  custom_info CustomInfo @relation(fields: [customInfoId], references: [id])
+  programme programme[]
+  programId Int @unique
+  program program @relation( fields: [programId], references: [id])
+}
+
+model programme {
+ id Int @id @default(autoincrement())
+  date String @unique
+  entries Entry[]
+}
