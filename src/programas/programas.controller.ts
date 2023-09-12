@@ -6,6 +6,7 @@ import {
   Param,
   Res,
   HttpStatus,
+  Delete,
 } from '@nestjs/common';
 import { ProgramaService } from '../programas/shared/programa.service/programa.service';
 import { Response } from 'express';
@@ -49,5 +50,23 @@ export class ProgramasController {
     return res
       .status(HttpStatus.CREATED)
       .json({ mensagem: 'Programação criada com sucesso' });
+  }
+
+  @Delete(':data')
+  async removerProgramacao(
+    @Param('data') data: string,
+    @Res() res: Response,
+  ): Promise<void> {
+    await this.ApiDeProgramacaoGlobo.removerProgramacaoDoBD(data)
+      .then(() => {
+        return res
+          .status(HttpStatus.OK)
+          .json({ mensagem: 'Programação foi deletada com sucesso' });
+      })
+      .catch(() => {
+        return res
+          .status(HttpStatus.NOT_FOUND)
+          .json({ mensagem: 'Programação não foi encontrada' });
+      });
   }
 }

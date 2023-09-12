@@ -167,4 +167,18 @@ export class ProgramaService {
       );
     }
   }
+
+  async removerProgramacaoDoBD(data: string): Promise<any> {
+    const programacao = await this.prisma.programme.findUnique({
+      where: {
+        date: data,
+      },
+    });
+
+    if (!programacao) {
+      throw new Error('A programação desta data não existe');
+    }
+
+    await this.prisma.programme.delete({ where: { date: data } });
+  }
 }
