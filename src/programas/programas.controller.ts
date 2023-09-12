@@ -15,10 +15,20 @@ export class ProgramasController {
   constructor(private readonly ApiDeProgramacaoGlobo: ProgramaService) {}
 
   @Get(':data')
-  async buscarDadosPorData(@Param('data') data: string) {
+  async buscarDadosPorData(
+    @Param('data') data: string,
+    @Res() res: Response,
+  ): Promise<Response> {
     const dados =
       await this.ApiDeProgramacaoGlobo.requisitarDadosDaAPIGlobo(data);
-    return dados;
+
+    if (dados) {
+      return res.status(HttpStatus.OK).json({ programme: dados });
+    }
+
+    return res
+      .status(HttpStatus.NOT_FOUND)
+      .json({ mensagem: 'A programação desta data não foi criada ainda' });
   }
 
   @Post()
