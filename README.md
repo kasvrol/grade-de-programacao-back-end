@@ -56,7 +56,5 @@ npm install
 4 - Agora você pode iniciar a aplicação em sua máquina usando o seguinte comando:
 
 ```bash
-npm run dev
-# or
-yarn dev
+npm run start:dev
 ```
