@@ -7,9 +7,12 @@ import {
   Res,
   HttpStatus,
   Delete,
+  Put,
+  Body,
 } from '@nestjs/common';
 import { ProgramaService } from '../programas/shared/programa.service/programa.service';
 import { Response } from 'express';
+import { Prisma } from '@prisma/client';
 
 @Controller('programas')
 export class ProgramasController {
@@ -46,6 +49,28 @@ export class ProgramasController {
         return res
           .status(HttpStatus.NOT_FOUND)
           .json({ mensagem: 'Programação já existe' });
+      });
+  }
+
+  @Put(':data')
+  async atualizarDadosPorData(
+    @Param('data') dataDaProgramacao: string,
+    @Res() res: Response,
+    @Body() dados: Prisma.programmeUpdateInput,
+  ): Promise<void> {
+    await this.ApiDeProgramacaoGlobo.atualizarProgramacaoDoBD(
+      dataDaProgramacao,
+      dados,
+    )
+      .then(() => {
+        return res
+          .status(HttpStatus.OK)
+          .json({ mensagem: 'Programação atualizada com sucesso' });
+      })
+      .catch(() => {
+        return res.status(HttpStatus.NOT_FOUND).json({
+          mensagem: 'A programação ainda não existe para ser atualizada',
+        });
       });
   }
 

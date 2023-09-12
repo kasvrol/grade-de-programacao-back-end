@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import axios from 'axios';
 import { PrismaService } from 'src/database/PrismaService';
 
@@ -34,7 +35,6 @@ export class ProgramaService {
           },
         },
       });
-      console.log(dados);
       return dados;
     } catch (error) {
       console.error(error);
@@ -179,6 +179,26 @@ export class ProgramaService {
     }
   }
 
+  async atualizarProgramacaoDoBD(
+    dataDaProgramacao: string,
+    dados: Prisma.programmeUpdateInput,
+  ): Promise<any> {
+    const programacao = await this.prisma.programme.findUnique({
+      where: {
+        date: dataDaProgramacao,
+      },
+    });
+
+    if (!programacao) {
+      throw new Error('A programação desta data não existe');
+    }
+
+    return await this.prisma.programme.update({
+      data: dados,
+      where: { date: dataDaProgramacao },
+    });
+  }
+
   async removerProgramacaoDoBD(data: string): Promise<any> {
     const programacao = await this.prisma.programme.findUnique({
       where: {
@@ -190,6 +210,6 @@ export class ProgramaService {
       throw new Error('A programação desta data não existe');
     }
 
-    await this.prisma.programme.delete({ where: { date: data } });
+    return await this.prisma.programme.delete({ where: { date: data } });
   }
 }
