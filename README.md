@@ -4,12 +4,11 @@
 
 A API permite aos usuários acessar informações da programação da Rede Globo para um dia específico, obtendo os dados diretamente da API oficial da emissora por meio de requisições.
 
-
 Pela data de entrega do projeto, agenda pessoal e falta de conhecimento do framework e o ORM propostos para criação da aplicação, faltou terminar a rota PUT.
 
-Para rodar o projeto em seu ambiente local, abra o Postman e acesse http://localhost:3002 utilizando o rota desejada para utilizar a aplicação. E para rodar o projeto em produção https://grade-de-programacao-back-end-git-main-kasvrol.vercel.app/programas{$ROTA}
+Para rodar o projeto em seu ambiente local, abra o Postman e acesse http://localhost:3002 utilizando o rota desejada para utilizar a aplicação.
 
-Os dados do BD em produção são escassos por causa do plano usado para construção da aplicação.
+Deve conectar API em seu banco de dados usando o gerenciador postgre, para isso, vá para o arquivo .env e substitua o valor da variável DATABASE_URL.
 
 ## Rotas
 
@@ -17,7 +16,7 @@ Os dados do BD em produção são escassos por causa do plano usado para constru
 | ---------- | ----------------------------- | ----------------------------------------- |
 | GET        | /programas/{$AAAA-MM-DD}      | Mostra a programação do dia requisitado   |
 | POST       | /programas?data={$AAAA-MM-DD} | Armazena a programação do dia requisitado |
-| DELETE       | /programas/{$AAAA-MM-DD} | Deleta a programação do dia requisitado |
+| DELETE     | /programas/{$AAAA-MM-DD}      | Deleta a programação do dia requisitado   |
 
 ## Ferramentas utilizadas:
 
